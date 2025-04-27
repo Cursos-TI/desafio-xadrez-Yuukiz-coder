@@ -1,43 +1,63 @@
 #include <stdio.h>
+//Recursividade para mover a Torre
+void moverTorre(int casas) {
+    if (casas > 0) {
+        printf("Direita.\n");
+        moverTorre(casas - 1);
+    }
+}
+
+//Recursividade para mover o Bispo
+void moverBispo() {
+    for(int vertical = 0, horizontal = 1; vertical < 6; vertical++) {
+        for(horizontal; horizontal == vertical; horizontal++) {
+            printf("Direita.\n");
+        }
+        if (vertical == 5) {
+            break;
+        }
+        printf("Cima, ");
+    }
+}
+
+//Recursividade para mover a Rainha
+void moverRainha(int casas) {
+    if (casas > 0) {
+        printf("Esquerda.\n");
+        moverRainha(casas - 1);
+    }
+}
 
 int main() {
     //Variáveis declaradas
-    int torre = 0, bispo = 0, rainha, L = 0, cavalo;
+    int torre = 5, bispo = 5, rainha = 8;
 
     //Mensagem inicial
-    printf("---Xadrez em C---\n");
+    printf("\n---Xadrez em C---\n");
 
-    //Movimento da torre usando While
+    //Movimento da torre usando void
     printf("\nMovimento da Torre:\n");
-    while (torre < 5) {
-        printf("Direita.\n");
-        torre ++;
-    }
+    moverTorre(torre);
 
-    //Movimento do bispo usando Do While
+    //Movimento do bispo usando void
     printf("\nMovimento do Bispo:\n");
-    do {
-        printf("Cima, Direita.\n");
-        bispo++;
-    } while (bispo < 5);
+    moverBispo(bispo);
     
-    //Movimento da rainha usando For
+    //Movimento da rainha usando void
     printf("\nMovimento da Rainha:\n");
-    for (rainha = 0; rainha < 8; rainha++) {
-        printf("Esquerda.\n");
-    }
+    moverRainha(rainha);
 
-    //Movimento do cavalo usando For aninhado a While
+    //Movimento do cavalo usando Loop Aninhado com múltiplas variáveis
     printf("\nMovimento do Cavalo:\n");
-    while (L < 1) {
-        //Loop aninhado usando For
-        for (cavalo = 0; cavalo < 2; cavalo++) {
-            printf("Baixo.\n");
+    for (int cavalo = 0, L = 0; L < 1; L++) {
+        for (cavalo; cavalo < 2; cavalo++) {
+            printf("Cima.\n");
         }
-
-        printf("Esquerda.\n");
-        L++;
+        printf("Direita.\n");
     }
-    
+
+    //Mensagem final
+    printf("\n---Fim---\n");
+
     return 0;
 }
